@@ -5,11 +5,35 @@
 </div>
 <div class="content">
     <div class="content-header">
+        <form class="playlist-selector" [formGroup]="input">
+            <div class="selector-wrap" *ngFor="let list of playlistOptions; let i = index">
+                <img class="selector-img" [src]="list.img">
+                <div class="selector-cov" (click)="selectPlaylist(i)"></div>
+            </div>
+            <input class="input-playlist" formControlName="value" />
+            <button (click)="addPlaylist()" >Add</button>
+        </form>
         <div class="spotify-player">
-            <iframe src="https://open.spotify.com/embed/album/3SpBlxme9WbeQdI9kx7KAV" width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe [src]="selectedUrl"
+            width="100%" height="80" frameBorder="0" allowtransparency="true"
+            allow="encrypted-media"></iframe>
         </div>
     </div>
 </div>
 <div class="clock">
-    <span>dadsad</span>
+  <div class="clock-selector">
+    <div class="selector-btn" [ngClass]="selectedIndexMode === 0 || selectedIndexMode === 2 ? 'selector-selected' : 'selector-diselected'" (click)="initializeCounter(0)">Pomo Time</div>
+    <div class="selector-btn" [ngClass]="selectedIndexMode === 1? 'selector-selected' : 'selector-diselected'" (click)="initializeCounter(1)">Small Break</div>
+    <div class="selector-btn" [ngClass]="selectedIndexMode === 3 ? 'selector-selected' : 'selector-diselected'" (click)="initializeCounter(3)">Long Break</div>
+  </div>
+    <div class="clock-wrap" [ngClass]="isPomoActive ? 'clock-active' : 'clock-disactive'">
+        <span>{{minutes}}</span>
+        <span>:</span>
+        <span>{{seconds}}</span>
+    </div>
+    <div class="clock-buttons">
+      <div class="clock-btn" [ngClass]="isPomoActive ? 'btn-active' : 'btn-disactive'" (click)="pauseCounter()">P</div>
+      <div class="clock-btn" [ngClass]="!isPomoActive ? 'btn-active' : 'btn-disactive'" (click)="resetPomo()">S</div>
+      <div class="clock-btn" [ngClass]="!isPomoActive ? 'btn-active' : 'btn-disactive'" (click)="startCounter()">P</div>
+    </div>
 </div>

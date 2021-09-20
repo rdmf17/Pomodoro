@@ -110,6 +110,7 @@
     font-size: 100px;
     font-weight: 800;
     transition: all 500ms;
+    z-index: 5;
 
     &.clock-active {
       color: black;
@@ -123,6 +124,7 @@
   .clock-selector {
     display: flex;
     justify-content: space-between;
+    z-index: 5;
     width: 750px;
 
     .selector-btn {
@@ -151,6 +153,7 @@
   .clock-buttons {
     display: flex;
     justify-content: space-between;
+    z-index: 5;
     width: 500px;
 
     .clock-btn {
@@ -489,7 +492,7 @@
         height: 30px;
         border-radius: 50px;
         font-size: 18px;
-        
+
       }
     }
   }
